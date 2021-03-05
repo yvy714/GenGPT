@@ -1,8 +1,9 @@
-/**
- * Copyright 2016 Yuan Yao
+/*
+ * Copyright 2021 Yuan Yao
  * University of Nottingham
- * Email: yvy@cs.nott.ac.uk (yuanyao1990yy@icloud.com)
- * 
+ * Zhejiang University of Technology
+ * Email: yaoyuan@zjut.edu.cn (yuanyao1990yy@icloud.com)
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -18,38 +19,44 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package uno.gpt.nodes;
-
+package uno.gpt.structure;
 import java.util.ArrayList;
 
 /**
- * @version 1.0
+ * @version 2.0
  */
 public class GoalNode extends Node 
 {
-	// Goal -> GoalName {Plans}	
+	// Goal -> GoalName {Goal-Condition}{Plans}
 	/** associated plans */
-	private ArrayList<PlanNode> plans;
-	
-	/** in-condition */
-	private ArrayList<Literal> inc;
+	final private ArrayList<PlanNode> plans;
+	/** goalConds-condition */
+	final private ArrayList<Literal> goalConds;
 
-	public GoalNode(String name, ArrayList<PlanNode> plan, ArrayList<Literal> inc)
+	public GoalNode(String name, ArrayList<PlanNode> plan, ArrayList<Literal> goalConds)
 	{
 		super(name);
-		this.inc = inc;
 		this.plans = plan;
+		this.goalConds = goalConds;
+	}
+
+	public GoalNode(String name){
+		super(name);
+		this.plans = new ArrayList<>();
+		this.goalConds = new ArrayList<>();
+
 	}
 	
-	/** method to return the in-condition of this plan */
-	public ArrayList<Literal> getInC()
-	{
-		return this.inc;
-	}
-	
-	/** method to return the plans to achieve this goal*/
+	/** method to return the plans to achieve this goalConds*/
 	public ArrayList<PlanNode> getPlans()
 	{
 		return this.plans;
 	}
+
+	/** method to return the plans to achieve this goalConds*/
+	public ArrayList<Literal> getGoalConds()
+	{
+		return this.goalConds;
+	}
+
 }

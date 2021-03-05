@@ -1,8 +1,9 @@
-/**
- * Copyright 2016 Yuan Yao
+/*
+ * Copyright 2021 Yuan Yao
  * University of Nottingham
- * Email: yvy@cs.nott.ac.uk (yuanyao1990yy@icloud.com)
- * 
+ * Zhejiang University of Technology
+ * Email: yaoyuan@zjut.edu.cn (yuanyao1990yy@icloud.com)
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -19,44 +20,40 @@
  */
 
 
-package uno.gpt.nodes;
+package uno.gpt.structure;
 
 import java.util.ArrayList;
 
 /**
- * @version 1.0
+ * @version 3.0
+ * @author yuanyao
  */
 public class PlanNode extends Node
 {
-	// Plan -> PlanName {PlanStep ; ... ; PlanStep}
+	// Plan -> PlanName {Context Condition} {PlanStep ; ... ; PlanStep}
 	/** planbody */
-	private ArrayList<Node> pb;
+	final private ArrayList<Node> pb;
 	
 	/** precondition */
-	private ArrayList<Literal> pre;
-	
-	/** in-condition */
-	private ArrayList<Literal> inc;
-		
-	public PlanNode(String name, ArrayList<Node> planbody, ArrayList<Literal> precondition, ArrayList<Literal> incondition)
-	{
+	final private ArrayList<Literal> pre;
+
+
+	public PlanNode(String name){
+		super(name);
+		this.pb = new ArrayList<>();
+		this.pre = new ArrayList<>();
+	}
+
+	public PlanNode(String name, ArrayList<Node> planbody, ArrayList<Literal> precondition) {
 		super(name);
 		this.pb = planbody;
 		this.pre = precondition;
-		this.inc = incondition;
 	}
-	
-	
+
 	/** method to return the precondition of this plan */
 	public ArrayList<Literal> getPre()
 	{
 		return this.pre;
-	}
-	
-	/** method to return the in-condition of this plan */
-	public ArrayList<Literal> getInc()
-	{
-		return this.inc;
 	}
 	
 	/** method to return its planbody */

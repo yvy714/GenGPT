@@ -1,7 +1,8 @@
-/**
- * Copyright 2016 Yuan Yao
+/*
+ * Copyright 2021 Yuan Yao
  * University of Nottingham
- * Email: yvy@cs.nott.ac.uk (yuanyao1990yy@icloud.com)
+ * Zhejiang University of Technology
+ * Email: yaoyuan@zjut.edu.cn (yuanyao1990yy@icloud.com)
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,42 +19,25 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package uno.gpt.nodes;
+package uno.gpt.structure;
+import java.util.ArrayList;
 
 /**
- * @version 1.0
+ * @version 3.0
  */
-public class Literal
+public abstract class Node
 {
-	// Literal -> (index, value)
-	/** index of the variable */
-	private int index;
-	
-	/** value of the variable */
-	private boolean value;
-	
-	public Literal(int ind, boolean val)
+	/**  name */
+	final private String name;
+
+	Node(String name)
 	{
-		this.index = ind;
-		this.value = val;
+		this.name = name;
 	}
 	
-	/** method to get variable index */
-	public int getIndex()
+	/** return the name */
+	public String getName()
 	{
-		return this.index;
+		return this.name;
 	}
-	
-	/** method to get value */
-	public boolean getValue()
-	{
-		return this.value;
-	}
-	
-	/** write the literal*/
-	public String toString()
-	{
-		return "(" + this.index + "," + this.value + ");";
-	}
-	
 }

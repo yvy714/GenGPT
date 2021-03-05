@@ -1,7 +1,8 @@
-/**
- * Copyright 2016 Yuan Yao
+/*
+ * Copyright 2021 Yuan Yao
  * University of Nottingham
- * Email: yvy@cs.nott.ac.uk (yuanyao1990yy@icloud.com)
+ * Zhejiang University of Technology
+ * Email: yaoyuan@zjut.edu.cn (yuanyao1990yy@icloud.com)
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,31 +19,28 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package uno.gpt.nodes;
-
+package uno.gpt.structure;
 import java.util.ArrayList;
 
 /**
- * @version 1.0
+ * @version 3.0
  */
 public class ActionNode extends Node{
 	// Action -> ActionName {Pre-condition}{post-condition}
 	/** precondition */
-	private ArrayList<Literal> prec;
-	
-	/** in-condition */
-	private ArrayList<Literal> inc;
-	
+	final private ArrayList<Literal> prec;
 	/** postcondition */
-	private ArrayList<Literal> postc;
+	final private ArrayList<Literal> postc;
 
+	public ActionNode(String name){
+		super(name);
+		this.prec = new ArrayList<>();
+		this.postc = new ArrayList<>();
+	}
 
-	public ActionNode(String name, ArrayList<Literal> precondition, ArrayList<Literal> incondition, 
-			ArrayList<Literal> postcondition)
-	{
+	public ActionNode(String name, ArrayList<Literal> precondition, ArrayList<Literal> postcondition) {
 		super(name);
 		this.prec = precondition;
-		this.inc = incondition;
 		this.postc = postcondition;
 	}
 	
@@ -50,12 +48,6 @@ public class ActionNode extends Node{
 	public ArrayList<Literal> getPreC()
 	{
 		return this.prec;
-	}
-	
-	/** method to return the in-condition of this action */
-	public ArrayList<Literal> getInC()
-	{
-		return this.inc;
 	}
 	
 	/** method to return the postcondition of this action */
